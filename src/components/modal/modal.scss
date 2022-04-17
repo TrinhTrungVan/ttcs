@@ -9,7 +9,7 @@
     bottom: 0;
     left: 0;
     overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.7);
     opacity: 0;
     visibility: hidden;
 
@@ -20,7 +20,7 @@
 
     &__content{
         padding: 2rem;
-        background-color: $bg-color;
+        background-color: $body-bg;
         width: 50%;
         opacity: 0;
         transform: translateY(-250px);
@@ -43,7 +43,7 @@
 
     &.active &__content{
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(36px);
     }
 
 }

@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
+
+import './modal.scss';
 
 const Modal = (props) => {
 
@@ -31,10 +33,10 @@ export const ModalContent = (props) => {
 
     return (
         <div ref={contentRef} className="modal__content">
-            {props.children}
-            <div className="modal_content__close" onClick={closeModal}>
-                <i class='bx bx-x'></i>
+            <div className="modal__content__close" onClick={closeModal}>
+                <i className='bx bx-x'></i>
             </div>
+            {props.children}
         </div>
     )
 }

@@ -11,7 +11,7 @@
 
     .header__wrap {
         @include flex(center, space-between);
-        padding: 24px 40px;
+        padding: 12px 40px;
 
         .logo {
             @include flex(center, center);

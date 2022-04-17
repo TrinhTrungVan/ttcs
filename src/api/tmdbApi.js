@@ -27,7 +27,7 @@ const tmdbApi = {
         return axiosClient.get(url, params);
     },
     getVideos: (cate, id) => {
-        const url = category[cate] + '/' + id + '/videos';
+        const url = `https://api.themoviedb.org/3/${category[cate]}/${id}/videos?api_key=15f41139dd460ab41b746dc923f23a63&language=en-US`
         return axiosClient.get(url, { params: {} });
     },
     search: (cate, params) => {
