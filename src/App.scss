@@ -74,6 +74,14 @@ iframe{
 	margin-bottom: 2rem;
 }
 
-.section{
-	padding: 0 2rem;
+.container{
+	margin-top: 2rem;
+}
+
+.section {
+    padding: 0 2rem;
+}
+
+.section__header {
+    @include flex(center, space-between);
 }

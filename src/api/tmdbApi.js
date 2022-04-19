@@ -23,7 +23,7 @@ const tmdbApi = {
         return axiosClient.get(url, params);
     },
     getTvList: (type, params) => {
-        const url = 'tv/' + tvType[type];
+        const url = `https://api.themoviedb.org/3/movie/${tvType[type]}?api_key=15f41139dd460ab41b746dc923f23a63&${params}`;
         return axiosClient.get(url, params);
     },
     getVideos: (cate, id) => {
