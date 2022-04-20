@@ -49,7 +49,7 @@ const Header = () => {
                 </ul>
                 <span></span>
                 <div className="search">
-                    <input type="text" placeholder="Search..." />
+                    {/* <input type="text" placeholder="Search..." /> */}
                     <i className='bx bx-search'></i>
                 </div>
                 <div className="signin">
