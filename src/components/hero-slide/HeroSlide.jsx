@@ -26,7 +26,6 @@ const HeroSlide = () => {
             try {
                 const response = await tmdbApi.getMoviesList(movieType.popular, { params });
                 setMovieItems(response.results.slice(0, 10));
-                console.log(response);
             }
             catch {
                 console.log('error');
@@ -42,7 +41,8 @@ const HeroSlide = () => {
                 grabCursor={true}
                 spaceBetween={0}
                 slidesPerView={1}
-            // autoplay={{delay: 3000}}
+                autoplay={{ delay: 5000 }}
+                speed={700}
             >
                 {
                     movieItems.map((item, i) => (
@@ -63,7 +63,7 @@ const HeroSlide = () => {
 
 const HeroSlideItem = (props) => {
 
-    let history = useNavigate();
+    let navigate = useNavigate();
     const item = props.item;
 
     const background = apiConfig.originalImage(item.backdrop_path ? item.backdrop_path : item.poster_path);
@@ -71,13 +71,13 @@ const HeroSlideItem = (props) => {
     const setModalActive = async () => {
         const modal = document.querySelector(`#modal_${item.id}`);
 
-        const videos = await  tmdbApi.getVideos(category.movie, item.id);
+        const videos = await tmdbApi.getVideos(category.movie, item.id);
 
-        if(videos.results.length > 0){
-            const videoSrc = 'http://youtube.com/embed/'+ videos.results[0].key;
+        if (videos.results.length > 0) {
+            const videoSrc = 'http://youtube.com/embed/' + videos.results[0].key;
             modal.querySelector('.modal__content > iframe').setAttribute('src', videoSrc);
         }
-        else{
+        else {
             modal.querySelector('.modal__content').innerHTML = 'No trailer.';
         }
 
@@ -90,13 +90,13 @@ const HeroSlideItem = (props) => {
         >
             <div className="hero-slide__item__content container">
                 <div className="hero-slide__item__content__poster">
-                    <img src={item.poster_path? apiConfig.w500Image(item.poster_path): apiConfig.w500Image(item.backdrop_path)} alt="" />
+                    <img src={item.poster_path ? apiConfig.w500Image(item.poster_path) : apiConfig.w500Image(item.backdrop_path)} alt="" />
                 </div>
                 <div className="hero-slide__item__content__infor">
                     <h2 className="title">{item.title}</h2>
                     <div className="overview">{item.overview}</div>
                     <div className="btns">
-                        <Button onClick={() => history.push('/movie' + item.id)}>
+                        <Button onClick={() => navigate('/movie/' + item.id)}>
                             Watch Now
                         </Button>
                         <OutlineButton onClick={setModalActive}>
@@ -115,12 +115,18 @@ const TrailerModal = (props) => {
 
     const iframeRef = useRef(null);
 
-    const onClose = () => iframeRef.current.setAttribute('src','');
+    const onClose = () => iframeRef.current.setAttribute('src', '');
 
     return (
         <Modal active={false} id={`modal_${item.id}`}>
             <ModalContent onClose={onClose}>
-                <iframe ref={iframeRef} width="100%" height="350px" title="trailer"></iframe>
+                <iframe
+                    ref={iframeRef}
+                    width="100%"
+                    height="350px"
+                    title="trailer"
+                    allowFullScreen="allowfullscreen"
+                ></iframe>
             </ModalContent>
         </Modal>
     )

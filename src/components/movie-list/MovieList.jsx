@@ -46,6 +46,7 @@ const MovieList = (props) => {
                 grabCursor={true}
                 spaceBetween={15}
                 slidesPerView={'auto'}
+                speed={800}
             >
                 {
                     items.map((item, i) => (

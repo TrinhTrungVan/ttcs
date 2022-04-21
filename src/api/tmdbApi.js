@@ -35,15 +35,15 @@ const tmdbApi = {
         return axiosClient.get(url, params);
     },
     detail: (cate, id, params) => {
-        const url = category[cate] + '/' + id;
+        const url = `https://api.themoviedb.org/3/${category[cate]}/${id}?api_key=15f41139dd460ab41b746dc923f23a63&language=en-US${params}`;
         return axiosClient.get(url, params);
     },
     credits: (cate, id) => {
-        const url = category[cate] + '/' + id + '/credits';
+        const url = `https://api.themoviedb.org/3/${category[cate]}/${id}/credits?api_key=15f41139dd460ab41b746dc923f23a63&language=en-US`;
         return axiosClient.get(url, { params: {} });
     },
     similar: (cate, id) => {
-        const url = category[cate] + '/' + id + '/similar';
+        const url = `https://api.themoviedb.org/3/${category[cate]}/${id}/similar?api_key=15f41139dd460ab41b746dc923f23a63&language=en-US&page=1`;
         return axiosClient.get(url, { params: {} });
     },
 }
