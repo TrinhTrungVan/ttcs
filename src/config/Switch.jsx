@@ -10,6 +10,11 @@ const Switch = () => {
     return (
         <Routes>
             <Route 
+                path='/'
+                exact
+                element={<Home/>}
+            />
+            <Route 
                 path='/:category/search/:keyword'
                 element={<Catalog/>}
             />
@@ -20,11 +25,6 @@ const Switch = () => {
             <Route 
                 path='/:category'
                 element={<Catalog/>}
-            />
-            <Route 
-                path='/'
-                exact
-                element={<Home/>}
             />
         </Routes>
     );
