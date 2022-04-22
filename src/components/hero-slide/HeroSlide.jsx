@@ -42,6 +42,7 @@ const HeroSlide = () => {
                 spaceBetween={0}
                 slidesPerView={1}
                 autoplay={{ delay: 5000 }}
+                loop={true}
                 speed={700}
             >
                 {

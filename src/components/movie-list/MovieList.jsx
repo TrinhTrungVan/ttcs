@@ -5,13 +5,9 @@ import './movie-list.scss';
 
 import { SwiperSlide, Swiper } from 'swiper/react';
 
-import {Link } from 'react-router-dom';
-
-import Button from '../button/Button';
 import MovieCard from '../movie-card/MovieCard';
 
 import tmdbApi, {category} from '../../api/tmdbApi';
-import apiConfig from '../../api/apiConfig';
 
 const MovieList = (props) => {
 

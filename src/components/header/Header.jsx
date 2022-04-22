@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
-import Button from '../button/Button';
+import Button, { OutlineButton } from '../button/Button';
 import Modal, { ModalContent } from '../modal/Modal';
 
 import './header.scss';
@@ -53,7 +53,6 @@ const Header = () => {
 
     return (
         <>
-
             <div ref={headerRef} className="header">
                 <div className="header__wrap container">
                     <div className="logo">
@@ -86,10 +85,58 @@ const Header = () => {
 }
 
 const AuthModal = () => {
+
+    const authModalBg = useRef(null);
+
+    const handleOnclick = () => {
+        authModalBg.current.classList.toggle('active');
+    }
+
     return (
         <Modal active={false} id="auth-modal">
             <ModalContent>
-                TrungVan
+                <div className="auth-modal__background" ref={authModalBg}>
+                    <div className="box signin">
+                        <h2>Already Have an Account ?</h2>
+                        <OutlineButton onClick={handleOnclick}>Sign in</OutlineButton>
+                    </div>
+                    <div className="box signup">
+                        <h2>Don't Have an Account ?</h2>
+                        <OutlineButton onClick={handleOnclick}>Sign up</OutlineButton>
+                    </div>
+                    <div className="formBx">
+                        <div className="form signinForm">
+                            <h3>Sign In</h3>
+                            <form action="">
+                                <div className="form-group">
+                                    <input type="text" name="" required />
+                                    <label htmlFor="">Email Address</label>
+                                    <span></span>
+                                </div>
+                                <div className="form-group">
+                                    <input type="password" name="" required />
+                                    <label htmlFor="">Password</label>
+                                    <span></span>
+                                </div>
+                                <button>
+                                    CONTINUE
+                                    <i className='bx bx-chevron-right'></i>
+                                </button>
+                                <div className="socials">
+                                    <h4 className="text__orConnect"> or Connect with Social Media</h4>
+                                    <div className="social facebook">
+                                        <i className='bx bxl-facebook' ></i>
+                                        Sign In with Facebook
+                                    </div>
+                                    <div className="social twitter">
+                                        <i className='bx bxl-twitter'></i>
+                                        Sign In with Twitter
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </ModalContent>
         </Modal>
     )
