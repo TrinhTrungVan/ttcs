@@ -1,0 +1,10 @@
+@use "../../scss/" as *;
+
+.container {
+    @include flex(center, center);
+    flex-direction: row;
+
+    .dot {
+        color: $main-color;
+    }
+}

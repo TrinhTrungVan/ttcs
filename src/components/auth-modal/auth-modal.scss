@@ -1,0 +1,155 @@
+@use "../../scss/" as *;
+
+#auth-modal {
+    .modal__content {
+        padding: 0;
+        border-radius: $border-radius;
+        height: 450px;
+        width: 850px;
+        overflow: hidden;
+
+        &__close {
+            top: 8px;
+            right: 8px;
+            z-index: 2001;
+            font-size: 2rem;
+        }
+    }
+}
+
+.auth-modal__background {
+    @include flex(center, space-between);
+    padding: 0 36px;
+    height: 500px;
+    position: relative;
+    background-image: linear-gradient(
+        90deg,
+        rgba(255, 157, 129, 1) 24.3%,
+        rgba(255, 78, 78, 1) 78.3%
+    );
+
+    .question {
+        h2 {
+            cursor: default;
+            user-select: none;
+        }
+        text-align: center;
+    }
+
+    &.active {
+        background-image: linear-gradient(
+            64.5deg,
+            rgba(245, 116, 185, 1) 14.7%,
+            rgba(89, 97, 223, 1) 88.7%
+        );
+    }
+
+    .auth-form {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        padding: 32px;
+        background-color: white;
+        width: 50%;
+        height: 450px;
+        border-radius: $border-radius;
+        transition: left 0.3s ease-in-out;
+
+        h3 {
+            color: black;
+            font-size: 1.6rem;
+            padding-bottom: 24px;
+        }
+
+        &.active {
+            left: 0;
+
+            .submit-btn {
+                background-image: linear-gradient(
+                    64.5deg,
+                    rgba(245, 116, 185, 1) 14.7%,
+                    rgba(89, 97, 223, 1) 88.7%
+                );
+            }
+        }
+
+        .submit-btn {
+            background-image: linear-gradient(
+                90deg,
+                rgba(255, 157, 129, 1) 24.3%,
+                rgba(255, 78, 78, 1) 78.3%
+            );
+            width: 100%;
+            height: 2.4rem;
+            line-height: 2.4rem;
+            border-radius: 5px;
+            border: none;
+            font-size: 1rem;
+            font-weight: 500;
+            color: white;
+
+            i {
+                float: right;
+                margin-right: 1rem;
+                font-size: 1.5rem;
+                line-height: 2.4rem;
+            }
+
+            &:hover {
+                opacity: 0.8;
+                transition: opacity 0.25s ease;
+            }
+        }
+
+        .socials {
+            h4 {
+                color: #ccc;
+                text-align: center;
+                width: 100%;
+                font-size: 0.9rem;
+                font-weight: 400;
+                margin: 5px 0px;
+            }
+
+            .social {
+                width: 100%;
+                height: 2.4rem;
+                line-height: 2.4rem;
+                font-size: 1rem;
+                border-radius: 5px;
+                background-color: #ccc;
+                padding-left: 1.5rem;
+                cursor: pointer;
+
+                &:hover {
+                    opacity: 0.8;
+                    transition: opacity 0.25s ease;
+                }
+
+                i {
+                    float: left;
+                    margin-right: 1rem;
+                    font-size: 1.5rem;
+                    line-height: 2.4rem;
+                }
+            }
+
+            .facebook {
+                background-image: linear-gradient(
+                    90deg,
+                    rgba(#136ea3, 1) 11.2%,
+                    rgba(#4ab3f8, 1) 91.1%
+                );
+                margin-bottom: 5px;
+            }
+
+            .twitter {
+                background-image: linear-gradient(
+                    90deg,
+                    rgba(#26b6d1, 1) 24.3%,
+                    rgba(#5ee6e4, 1) 78.3%
+                );
+            }
+        }
+    }
+}

@@ -1,16 +1,16 @@
-import React from 'react';
+import React from "react";
 
-import './input.scss';
+import "./input.scss";
 
 const Input = (props) => {
     return (
-        <input
-            type={props.type}
-            placeholder={props.placeholder}
-            value={props.value}
-            onChange={props.onChange ? (e) => props.onChange(e) : null}
-        />
+        <div className='form-group'>
+            <input id={props.id} type={props.type} />
+            <label htmlFor={props.id}>{props.label}</label>
+            <span className='line'></span>
+            {/* <span className='text-error'>{props.textError}</span> */}
+        </div>
     );
-}
+};
 
 export default Input;
