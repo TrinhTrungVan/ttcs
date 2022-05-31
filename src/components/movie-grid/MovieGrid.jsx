@@ -8,6 +8,7 @@ import Button, { OutlineButton } from "../button/Button";
 import Input from "../search-input/SearchInput";
 
 import tmdbApi, { category, movieType, tvType } from "../../api/tmdbApi";
+import apiConfig from "../../api/apiConfig";
 
 const MovieGrid = (props) => {
     const [items, setItems] = useState([]);
@@ -21,7 +22,9 @@ const MovieGrid = (props) => {
             let response = null;
 
             if (keyword === undefined) {
-                const params = {};
+                const params = {
+                    api_key: apiConfig.apiKey,
+                };
                 switch (props.category) {
                     case category.movie:
                         response = await tmdbApi.getMoviesList(
@@ -36,6 +39,7 @@ const MovieGrid = (props) => {
                 }
             } else {
                 const params = {
+                    api_key: apiConfig.apiKey,
                     query: keyword,
                 };
 

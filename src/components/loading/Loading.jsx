@@ -4,15 +4,9 @@ import "./loading.scss";
 
 const Loading = () => {
     return (
-        <div className='container'>
-            <div className='dot'>
-                <i className='bx bxs-circle'></i>
-            </div>
-            <div className='dot'>
-                <i className='bx bxs-circle'></i>
-            </div>
-            <div className='dot'>
-                <i className='bx bxs-circle'></i>
+        <div className='loading-background'>
+            <div className='loading'>
+                <i className='bx bx-loader'></i>
             </div>
         </div>
     );

@@ -1,22 +1,28 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from "react";
 
-import { useParams } from 'react-router-dom';
+import { useParams } from "react-router-dom";
 
-import tmdbApi from '../../api/tmdbApi';
+import tmdbApi from "../../api/tmdbApi";
+import apiConfig from "../../api/apiConfig";
 
 const VideoList = (props) => {
-
     const { category } = useParams();
 
     const [videos, setVideos] = useState([]);
 
     useEffect(() => {
         const getVideos = async () => {
-            const response = await tmdbApi.getVideos(category, props.id);
+            const params = {
+                api_key: apiConfig.apiKey,
+                language: "en-US",
+            };
+            const response = await tmdbApi.getVideos(category, props.id, {
+                params,
+            });
             setVideos(response.results.slice(0, 3));
-        }
+        };
         getVideos();
-    }, [category, props.id])
+    }, [category, props.id]);
 
     return (
         <>
@@ -25,36 +31,33 @@ const VideoList = (props) => {
             ))}
         </>
     );
-}
-
+};
 
 const Video = (props) => {
-
     const item = props.item;
 
     const iframeRef = useRef(null);
 
     useEffect(() => {
-        const height = iframeRef.current.offsetWidth * 9 / 16 + 'px';
-        iframeRef.current.setAttribute('height', height);
+        const height = (iframeRef.current.offsetWidth * 9) / 16 + "px";
+        iframeRef.current.setAttribute("height", height);
     }, []);
 
     return (
-        <div className="video">
-            <div className="video__title">
+        <div className='video'>
+            <div className='video__title'>
                 <h2>{item.name}</h2>
             </div>
             <iframe
                 src={`https://youtube.com/embed/${item.key}`}
-                allowFullScreen="allowfullscreen"
+                allowFullScreen='allowfullscreen'
                 ref={iframeRef}
-                frameBorder="0"
-                width="100%"
-                title="video"
-            >
-            </iframe>
+                frameBorder='0'
+                width='100%'
+                title='video'
+            ></iframe>
         </div>
-    )
-}
+    );
+};
 
 export default VideoList;

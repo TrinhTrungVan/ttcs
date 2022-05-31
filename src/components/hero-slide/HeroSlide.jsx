@@ -17,8 +17,10 @@ const HeroSlide = () => {
     const [movieItems, setMovieItems] = useState([]);
 
     useEffect(() => {
+        console.log("loading..");
         const getMovies = async () => {
             const params = {
+                api_key: apiConfig.apiKey,
                 language: "en-US",
                 page: 1,
             };
