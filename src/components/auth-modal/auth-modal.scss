@@ -1,32 +1,17 @@
 @use "../../scss/" as *;
 
-#auth-modal {
-    .modal__content {
-        padding: 0;
-        border-radius: $border-radius;
-        height: 450px;
-        width: 850px;
-        overflow: hidden;
-
-        &__close {
-            top: 8px;
-            right: 8px;
-            z-index: 2001;
-            font-size: 2rem;
-        }
-    }
-}
-
 .auth-modal__background {
     @include flex(center, space-between);
     padding: 0 36px;
-    height: 500px;
-    position: relative;
+    height: 450px;
+    width: 750px;
+    border-radius: $border-radius;
     background-image: linear-gradient(
         90deg,
         rgba(255, 157, 129, 1) 24.3%,
         rgba(255, 78, 78, 1) 78.3%
     );
+    position: relative;
 
     .question {
         h2 {

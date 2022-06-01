@@ -57,6 +57,7 @@ const MovieGrid = (props) => {
 
         if (keyword === undefined) {
             const params = {
+                api_key: apiConfig.apiKey,
                 page: page + 1,
             };
             switch (props.category) {
@@ -72,6 +73,7 @@ const MovieGrid = (props) => {
             }
         } else {
             const params = {
+                api_key: apiConfig.apiKey,
                 page: page + 1,
                 query: keyword,
             };

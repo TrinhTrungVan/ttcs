@@ -1,0 +1,12 @@
+@use "../../scss/" as *;
+
+.trailer-modal__container {
+    padding: 50px;
+    border-radius: 8px;
+    background-color: rgb(99, 99, 99);
+
+    iframe {
+        width: 850px;
+        height: 450px;
+    }
+}

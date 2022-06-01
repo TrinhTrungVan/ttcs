@@ -1,12 +1,15 @@
-import React, { useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 
 import logo from "../../assets/logo.png";
 import AuthModal from "../auth-modal/AuthModal";
 import Button from "../button/Button";
+
 import "./header.scss";
 
 const Header = () => {
+    const [showAuthModal, setShowAuthModal] = useState(false);
+
     const headerRef = useRef(null);
 
     let navigate = useNavigate();
@@ -28,9 +31,9 @@ const Header = () => {
         };
     }, []);
 
-    const setModalActive = () => {
-        const modal = document.querySelector("#auth-modal");
-        modal.classList.toggle("active");
+    const handleSearch = () => {
+        navigate("/movie");
+        window.scrollTo(0, 0);
     };
 
     return (
@@ -47,17 +50,18 @@ const Header = () => {
                         <NavLink to='/tv'>TV Series</NavLink>
                     </div>
                     <span></span>
-                    <div className='search' onClick={() => navigate("/movie")}>
+                    <div className='search' onClick={handleSearch}>
                         <i className='bx bx-search'></i>
                     </div>
-                    <div className='signin'>
-                        <Button className='medium' onClick={setModalActive}>
-                            Sign In
-                        </Button>
+                    <div
+                        className='signin'
+                        onClick={() => setShowAuthModal(true)}
+                    >
+                        <Button className='medium'>Sign In</Button>
                     </div>
                 </div>
             </div>
-            <AuthModal />
+            <AuthModal visible={showAuthModal} setVisible={setShowAuthModal} />
         </>
     );
 };

@@ -16,7 +16,7 @@ const CastList = (props) => {
         const getCredits = async () => {
             const params = {
                 api_key: apiConfig.apiKey,
-                language: "en-US",
+                language: apiConfig.language,
             };
             const response = await tmdbApi.credits(category, props.id, {
                 params,

@@ -17,7 +17,7 @@ const Detail = () => {
         const getDetail = async () => {
             const params = {
                 api_key: apiConfig.apiKey,
-                language: "en-US",
+                language: apiConfig.language,
             };
             const response = await tmdbApi.detail(category, id, { params });
             setItem(response);

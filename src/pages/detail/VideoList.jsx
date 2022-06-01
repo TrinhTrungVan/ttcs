@@ -14,7 +14,7 @@ const VideoList = (props) => {
         const getVideos = async () => {
             const params = {
                 api_key: apiConfig.apiKey,
-                language: "en-US",
+                language: apiConfig.language,
             };
             const response = await tmdbApi.getVideos(category, props.id, {
                 params,

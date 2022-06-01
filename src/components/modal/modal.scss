@@ -1,9 +1,9 @@
-@use '../../scss/'as *;
+@use "../../scss/" as *;
 
-.modal {
+.modal__overlay {
     @include flex(center, center);
     position: fixed;
-    z-index: 100;
+    z-index: 2002;
     top: 0;
     right: 0;
     bottom: 0;
@@ -12,39 +12,42 @@
     background-color: rgba(0, 0, 0, 0.7);
     opacity: 0;
     visibility: hidden;
+    transition: opacity 0.3s linear;
 
-    &.active{
+    &.active {
         opacity: 1;
         visibility: visible;
     }
 
-    &__content{
-        padding: 2rem;
-        background-color: $body-bg;
-        width: 60%;
+    &.active > .modal__content {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+    .modal__content {
         opacity: 0;
-        transform: translateY(-250px);
-        transition: transform 0.6s ease, opacity 0.6s ease;
+        visibility: hidden;
+        transform: translateY(-100px);
+        transition: opacity 0.3s linear, transform 0.3s linear;
         position: relative;
+    }
+    .modal__close {
+        @include flex(center, center);
+        color: rgb(39, 39, 39);
+        position: absolute;
+        font-size: 2.5rem;
+        z-index: 9999;
+        top: 20px;
+        right: 20px;
+        width: 30px;
+        height: 30px;
+        transform: rotate(0deg);
+        transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        cursor: pointer;
 
-
-        &__close{
-            color: rgb(190, 189, 189);
-            position: absolute;
-            cursor: pointer;
-            top: 5px;
-            right: 5px;
-            font-size: 1.5rem;
-
-            &:hover{
-                color: $main-color;
-            }
+        &:hover {
+            transform: rotate(90deg);
+            opacity: 0.7;
         }
     }
-
-    &.active &__content{
-        opacity: 1;
-        transform: translateY(36px);
-    }
-
 }
