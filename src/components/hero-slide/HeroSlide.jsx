@@ -8,12 +8,15 @@ import apiConfig from "../../api/apiConfig";
 import tmdbApi, { category, movieType } from "../../api/tmdbApi";
 
 import Button, { OutlineButton } from "../button/Button";
+import Modal from "../modal/Modal";
 import TrailerModal from "../trailer-modal/TrailerModal";
 
 import "./hero-slide.scss";
 
 const HeroSlide = () => {
     const [movieItems, setMovieItems] = useState([]);
+    const [showTrailerModal, setShowTrailerModal] = useState(false);
+    const [videoSrc, setVideoSrc] = useState("");
 
     useEffect(() => {
         const getMovies = async () => {
@@ -35,6 +38,12 @@ const HeroSlide = () => {
         getMovies();
     }, []);
 
+    // Khi lấy được data(videoSrc) thì showModal và setVideoSrc cho modal
+    const getTrailer = (data) => {
+        setShowTrailerModal(true);
+        setVideoSrc(data);
+    };
+
     return (
         <div className='hero-slide'>
             <Swiper
@@ -42,7 +51,7 @@ const HeroSlide = () => {
                 grabCursor={true}
                 spaceBetween={0}
                 slidesPerView={1}
-                autoplay={{ delay: 5000 }}
+                autoplay={{ delay: 4000 }}
                 loop={true}
                 speed={700}
             >
@@ -52,11 +61,17 @@ const HeroSlide = () => {
                             <HeroSlideItem
                                 item={item}
                                 className={`${isActive ? "active" : ""}`}
+                                getTrailer={getTrailer}
                             />
                         )}
                     </SwiperSlide>
                 ))}
             </Swiper>
+            {showTrailerModal && (
+                <Modal setShowModal={setShowTrailerModal}>
+                    <TrailerModal videoSrc={videoSrc} />
+                </Modal>
+            )}
         </div>
     );
 };
@@ -69,11 +84,10 @@ const HeroSlideItem = (props) => {
         item.backdrop_path ? item.backdrop_path : item.poster_path
     );
 
-    const [showTrailerModal, setShowTrailerModal] = useState(false);
     const [videoSrc, setVideoSrc] = useState("");
 
     useEffect(() => {
-        const getTrailer = async () => {
+        const getTrailerSrc = async () => {
             const params = {
                 api_key: apiConfig.apiKey,
                 language: apiConfig.language,
@@ -90,11 +104,11 @@ const HeroSlideItem = (props) => {
                 setVideoSrc("");
             }
         };
-        getTrailer();
-    }, []);
+        getTrailerSrc();
+    }, [item.id]);
 
     const handleOnClick = () => {
-        setShowTrailerModal(true);
+        props.getTrailer(videoSrc);
     };
 
     return (
@@ -130,13 +144,6 @@ const HeroSlideItem = (props) => {
                     </div>
                 </div>
             </div>
-            {showTrailerModal && (
-                <TrailerModal
-                    videoSrc={videoSrc}
-                    visible={showTrailerModal}
-                    setVisible={setShowTrailerModal}
-                />
-            )}
         </>
     );
 };

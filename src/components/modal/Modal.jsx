@@ -1,29 +1,46 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { motion } from "framer-motion";
 
 import "./modal.scss";
 
 const Modal = (props) => {
     const handleOnClick = () => {
-        props.setVisible(false);
+        props.setShowModal(false);
     };
-
     return (
-        <div
-            id={props.id}
-            className={`modal__overlay ${props.visible ? "active" : ""}`}
-            onClick={handleOnClick}
+        <motion.div
+            initial={{
+                opacity: 0,
+            }}
+            animate={{
+                opacity: 1,
+            }}
+            transition={{
+                duration: 0.3,
+            }}
+            className='modal__backdrop'
         >
-            <div
+            <motion.div
+                initial={{
+                    opacity: 0,
+                    y: -100,
+                }}
+                animate={{
+                    opacity: 1,
+                    y: 0,
+                }}
+                transition={{
+                    duration: 0.3,
+                }}
                 className='modal__content'
-                onClick={(e) => e.stopPropagation()}
             >
                 <div className='modal__close' onClick={handleOnClick}>
                     <i className='bx bx-x'></i>
                 </div>
                 {props.children}
-            </div>
-        </div>
+            </motion.div>
+        </motion.div>
     );
 };
 

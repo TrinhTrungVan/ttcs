@@ -14,11 +14,11 @@
     position: relative;
 
     .question {
+        text-align: center;
         h2 {
             cursor: default;
             user-select: none;
         }
-        text-align: center;
     }
 
     &.active {

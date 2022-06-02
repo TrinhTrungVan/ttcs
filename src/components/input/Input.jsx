@@ -9,6 +9,7 @@ const Input = (props) => {
                 id={props.id}
                 className={`${props.id} invalid`}
                 type={props.type}
+                placeholder=' '
             />
             <label htmlFor={props.id}>{props.label}</label>
             <span className='line'></span>

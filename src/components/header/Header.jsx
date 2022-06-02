@@ -3,12 +3,13 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 
 import logo from "../../assets/logo.png";
 import AuthModal from "../auth-modal/AuthModal";
+import Modal from "../modal/Modal";
 import Button from "../button/Button";
 
 import "./header.scss";
 
 const Header = () => {
-    const [showAuthModal, setShowAuthModal] = useState(false);
+    const [showModal, setShowModal] = useState(false);
 
     const headerRef = useRef(null);
 
@@ -53,15 +54,16 @@ const Header = () => {
                     <div className='search' onClick={handleSearch}>
                         <i className='bx bx-search'></i>
                     </div>
-                    <div
-                        className='signin'
-                        onClick={() => setShowAuthModal(true)}
-                    >
+                    <div className='signin' onClick={() => setShowModal(true)}>
                         <Button className='medium'>Sign In</Button>
                     </div>
                 </div>
             </div>
-            <AuthModal visible={showAuthModal} setVisible={setShowAuthModal} />
+            {showModal && (
+                <Modal setShowModal={setShowModal}>
+                    <AuthModal />
+                </Modal>
+            )}
         </>
     );
 };

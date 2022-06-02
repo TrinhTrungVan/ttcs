@@ -13,20 +13,21 @@
         color: black;
         font-weight: 500;
 
-        // &:focus ~ label {
-        //     top: -16px;
-        //     color: rgb(32, 221, 250);
-        //     font-size: 0.9rem;
-        // }
+        &:focus ~ label,
+        &:not(:placeholder-shown) ~ label {
+            top: -16px;
+            color: rgb(32, 221, 250);
+            font-size: 0.9rem;
+        }
     }
     label {
         position: absolute;
-        top: -16px;
+        top: 8px;
         left: 0;
         color: black;
-        // pointer-events: none;
+        pointer-events: none;
         transition: top 0.3s ease;
-        color: rgb(32, 221, 250);
+        color: black;
         font-size: 0.9rem;
     }
 
