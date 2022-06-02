@@ -98,7 +98,7 @@ const HeroSlideItem = (props) => {
 
             if (videos.results.length > 0) {
                 setVideoSrc(
-                    `http://youtube.com/embed/${videos.results[0].key}`
+                    `https://youtube.com/embed/${videos.results[0].key}`
                 );
             } else {
                 setVideoSrc("");
