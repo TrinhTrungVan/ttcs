@@ -1,4 +1,4 @@
-@use '../../scss/' as *;
+@use "../../scss/" as *;
 
 .hero-slide__item {
     width: 100%;
@@ -47,7 +47,7 @@
             transition: opacity 0.7s ease, transform 0.7s ease;
         }
 
-        &__infor {
+        &__info {
             padding: 16px 50px;
             width: 70%;
 
@@ -62,7 +62,7 @@
                 text-shadow: 2px 2px 8px black;
             }
 
-            .btns>*~* {
+            .btns > * ~ * {
                 margin-left: 1.5rem;
             }
 
@@ -73,7 +73,6 @@
                 transform: translateY(150px);
                 transition: opacity 0.5s ease, transform 0.5s ease;
             }
-
         }
     }
 
@@ -83,8 +82,7 @@
             transform: scale(1);
         }
 
-        &__infor {
-
+        &__info {
             .title,
             .overview,
             .btns {
@@ -92,12 +90,32 @@
                 transform: translateY(0);
             }
 
-            .overview{
+            .overview {
                 transition-delay: 0.2s;
             }
 
-            .btns{
+            .btns {
                 transition-delay: 0.3s;
+            }
+        }
+    }
+}
+
+// Mobile
+@include mobile {
+    .hero-slide__item {
+        height: 40vh;
+
+        &__content__poster {
+            display: none;
+        }
+
+        &__content__info {
+            padding: 16px 20px;
+            width: 100%;
+
+            .btns {
+                @include flex(center, center);
             }
         }
     }

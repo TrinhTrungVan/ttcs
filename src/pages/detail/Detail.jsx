@@ -49,7 +49,7 @@ const Detail = () => {
                                 }}
                             ></div>
                         </div>
-                        <div className='movie-content__infor'>
+                        <div className='movie-content__info'>
                             <div className='title'>
                                 {item.title || item.name}
                             </div>

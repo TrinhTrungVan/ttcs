@@ -18,13 +18,15 @@ const MovieCard = (props) => {
 
     return (
         <Link to={link}>
-            <div
-                className='movie-card'
-                style={{ backgroundImage: `url(${bg})` }}
-            >
-                <Button className='small'>
-                    <i className='bx bx-play'></i>
-                </Button>
+            <div className='movie-card'>
+                <div
+                    className='background'
+                    style={{ backgroundImage: `url(${bg})` }}
+                >
+                    <Button className='small'>
+                        <i className='bx bx-play'></i>
+                    </Button>
+                </div>
             </div>
             <h3>{item.title || item.name}</h3>
         </Link>

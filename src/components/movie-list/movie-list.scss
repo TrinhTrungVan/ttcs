@@ -1,7 +1,13 @@
-@use '../../scss/' as *;
+@use "../../scss/" as *;
 
-.movie-list{
-    .swiper-slide{
+.movie-list {
+    .swiper-slide {
         width: 15%;
+    }
+
+    @include mobile {
+        .swiper-slide {
+            width: 40%;
+        }
     }
 }

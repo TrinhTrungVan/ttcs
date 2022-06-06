@@ -3,8 +3,8 @@
 .auth-modal__background {
     @include flex(center, space-between);
     padding: 0 36px;
-    height: 450px;
-    width: 750px;
+    height: 500px;
+    width: 800px;
     border-radius: $border-radius;
     background-image: linear-gradient(
         90deg,
@@ -30,27 +30,34 @@
     }
 
     .auth-form {
+        @include flex(center, center);
+        flex-direction: column;
         position: absolute;
         top: 0;
         left: 50%;
-        padding: 32px;
+        padding: 24px 32px;
         background-color: white;
         width: 50%;
-        height: 450px;
+        height: 100%;
         border-radius: $border-radius;
-        transition: left 0.3s ease-in-out;
+        transition: left 0.3s ease-in-out, top 0.3s ease-in-out;
+
+        form {
+            width: 100%;
+        }
 
         h3 {
             color: black;
-            font-size: 1.6rem;
-            padding-bottom: 24px;
+            padding-bottom: 16px;
+            text-align: center;
+            font-size: 2rem;
         }
 
         &.active {
             left: 0;
 
             .submit-btn {
-                background-image: linear-gradient(
+                background: linear-gradient(
                     64.5deg,
                     rgba(245, 116, 185, 1) 14.7%,
                     rgba(89, 97, 223, 1) 88.7%
@@ -59,7 +66,7 @@
         }
 
         .submit-btn {
-            background-image: linear-gradient(
+            background: linear-gradient(
                 90deg,
                 rgba(255, 157, 129, 1) 24.3%,
                 rgba(255, 78, 78, 1) 78.3%
@@ -83,6 +90,17 @@
             &:hover {
                 opacity: 0.8;
                 transition: opacity 0.25s ease;
+            }
+
+            &:disabled,
+            &:disabled:hover {
+                opacity: 1;
+                cursor: not-allowed;
+                background: linear-gradient(
+                    180deg,
+                    rgba(161, 161, 161, 1) 0%,
+                    rgba(161, 161, 161, 1) 100%
+                );
             }
         }
 
@@ -120,7 +138,7 @@
             }
 
             .facebook {
-                background-image: linear-gradient(
+                background: linear-gradient(
                     90deg,
                     rgba(#136ea3, 1) 11.2%,
                     rgba(#4ab3f8, 1) 91.1%
@@ -129,11 +147,62 @@
             }
 
             .twitter {
-                background-image: linear-gradient(
+                background: linear-gradient(
                     90deg,
                     rgba(#26b6d1, 1) 24.3%,
                     rgba(#5ee6e4, 1) 78.3%
                 );
+            }
+        }
+    }
+}
+
+@include mobile {
+    .auth-modal__background {
+        @include flex(center, space-between);
+        flex-direction: column;
+        padding: 8px 0px;
+        width: 100%;
+        height: 500px;
+        font-size: 1.4rem;
+
+        .question {
+            text-align: center;
+            h2 {
+                font-size: 1.6rem;
+                cursor: default;
+                user-select: none;
+            }
+        }
+
+        .auth-form {
+            width: 100%;
+            height: 85%;
+            top: 15%;
+            left: 0;
+            padding-top: 10px;
+
+            h3 {
+                font-size: 3rem;
+            }
+
+            &.active {
+                top: 0;
+            }
+
+            .socials {
+                h4 {
+                    font-size: 1.4rem;
+                }
+            }
+
+            .submit-btn,
+            .submit-btn i,
+            .socials .social,
+            .socials .social i {
+                font-size: 1.6rem;
+                height: 4rem;
+                line-height: 4rem;
             }
         }
     }

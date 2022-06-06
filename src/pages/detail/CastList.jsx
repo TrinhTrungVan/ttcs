@@ -12,6 +12,13 @@ const CastList = (props) => {
 
     const [casts, setCasts] = useState([]);
 
+    let maxCasts;
+    if (window.innerWidth < 740) {
+        maxCasts = 4;
+    } else {
+        maxCasts = 5;
+    }
+
     useEffect(() => {
         const getCredits = async () => {
             const params = {
@@ -21,10 +28,10 @@ const CastList = (props) => {
             const response = await tmdbApi.credits(category, props.id, {
                 params,
             });
-            setCasts(response.cast.slice(0, 5));
+            setCasts(response.cast.slice(0, maxCasts));
         };
         getCredits();
-    }, [category, props.id]);
+    }, [category, props.id, maxCasts]);
 
     return (
         <div className='casts'>

@@ -79,6 +79,12 @@ const HeroSlide = () => {
 const HeroSlideItem = (props) => {
     let navigate = useNavigate();
     const item = props.item;
+    let maxLength;
+    if (window.innerWidth < 740) {
+        maxLength = 150;
+    } else {
+        maxLength = 310;
+    }
 
     const background = apiConfig.originalImage(
         item.backdrop_path ? item.backdrop_path : item.poster_path
@@ -128,9 +134,13 @@ const HeroSlideItem = (props) => {
                             alt=''
                         />
                     </div>
-                    <div className='hero-slide__item__content__infor'>
-                        <h2 className='title'>{item.title}</h2>
-                        <div className='overview'>{item.overview}</div>
+                    <div className='hero-slide__item__content__info'>
+                        <h3 className='title'>{item.title}</h3>
+                        <p className='overview'>
+                            {item.overview.length > maxLength
+                                ? item.overview.substring(0, maxLength) + " ..."
+                                : item.overview}
+                        </p>
                         <div className='btns'>
                             <Button
                                 onClick={() => navigate("/movie/" + item.id)}

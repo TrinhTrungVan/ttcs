@@ -1,4 +1,4 @@
-@use "../../scss/"as *;
+@use "../../scss/" as *;
 
 .banner {
     height: 60vh;
@@ -47,26 +47,26 @@
         }
     }
 
-    &__infor{
+    &__info {
         width: 70%;
         padding-left: 2rem;
         position: relative;
 
-        & > *{
+        & > * {
             margin-bottom: 2rem;
         }
 
-        .title{
+        .title {
             font-size: 3rem;
             line-height: 1;
         }
 
-        .genres{
-            & > * ~*{
+        .genres {
+            & > * ~ * {
                 margin-left: 1rem;
             }
 
-            &__item{
+            &__item {
                 cursor: default;
                 padding: 0.5rem 1.5rem;
                 border: 2px solid $white;
@@ -77,29 +77,45 @@
                 letter-spacing: 1px;
             }
         }
-
     }
 }
 
-.casts{
+.casts {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
     gap: 20px;
 
-    &__item{
-        &__img{
+    &__item {
+        &__img {
             padding-top: 160px;
             background-size: cover;
             margin-bottom: 0.5rem;
             border-radius: 12px;
         }
 
-        &__name{
+        &__name {
             font-size: 0.8rem;
         }
     }
 }
 
-.video{
+.video {
     margin-bottom: 3rem;
+}
+
+@include mobile {
+    .movie-content {
+        @include flex(flex-start, center);
+        max-width: 100%;
+        padding: 0 1rem;
+
+        &__poster {
+            display: none;
+        }
+
+        &__info {
+            width: 90%;
+            padding: 0;
+        }
+    }
 }

@@ -26,7 +26,7 @@ const AuthModal = (props) => {
             </div>
             <div className={`auth-form ${isSignInForm ? "active" : ""}`}>
                 <h3>{isSignInForm ? "Sign In" : "Sign Up"}</h3>
-                <form action=''>
+                <form action='' autoComplete='off'>
                     <Input
                         id='username'
                         type='text'
@@ -55,7 +55,7 @@ const AuthModal = (props) => {
                             textError='Please re-enter your password.'
                         />
                     )}
-                    <button className='submit-btn'>
+                    <button className='submit-btn' disabled={false}>
                         {isSignInForm ? "Sign In" : "Sign Up"}
                         <i className='bx bx-chevron-right'></i>
                     </button>

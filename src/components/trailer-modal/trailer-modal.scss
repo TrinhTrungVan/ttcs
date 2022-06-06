@@ -1,12 +1,24 @@
 @use "../../scss/" as *;
 
 .trailer-modal__container {
-    padding: 50px;
+    @include flex(center, center);
     border-radius: 8px;
     background-color: rgb(99, 99, 99);
 
     iframe {
+        padding: 36px;
         width: 850px;
         height: 450px;
+    }
+}
+
+@include mobile {
+    .trailer-modal__container {
+        padding: 20px;
+        iframe {
+            padding: 8px 0px;
+            width: 260px;
+            height: 180px;
+        }
     }
 }
