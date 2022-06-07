@@ -7,11 +7,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import apiConfig from "../../api/apiConfig";
 import tmdbApi, { category, movieType } from "../../api/tmdbApi";
 
-import Button, { OutlineButton } from "../button/Button";
-import Modal from "../modal/Modal";
-import TrailerModal from "../trailer-modal/TrailerModal";
+import Button, { OutlineButton } from "../Button/Button";
+import Modal from "../Modal/Modal";
+import TrailerModal from "../TrailerModal/TrailerModal";
 
-import "./hero-slide.scss";
+import "./Slide.scss";
 
 const HeroSlide = () => {
     const [movieItems, setMovieItems] = useState([]);

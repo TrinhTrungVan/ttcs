@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 
-import { OutlineButton } from "../button/Button";
-import Input from "../input/Input";
+import { OutlineButton } from "../Button/Button";
+import Input from "../Input/Input";
 
-import "./auth-modal.scss";
+import "./AuthModal.scss";
 
 const AuthModal = (props) => {
     const [isSignInForm, setIsSignInForm] = useState(true);

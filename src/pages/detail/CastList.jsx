@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
-
 import { useParams } from "react-router-dom";
 
 import tmdbApi from "../../api/tmdbApi";
 import apiConfig from "../../api/apiConfig";
-
-import "./detail.scss";
 
 const CastList = (props) => {
     const { category } = useParams();

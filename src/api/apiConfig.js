@@ -1,10 +1,9 @@
 const apiConfig = {
-    baseUrl: "https://api.themoviedb.org/3/",
+    baseUrl: process.env.REACT_APP_BASE_URL,
     language: "en-US",
-    apiKey: "15f41139dd460ab41b746dc923f23a63",
-    originalImage: (imgPath) =>
-        `https://image.tmdb.org/t/p/original/${imgPath}`,
-    w500Image: (imgPath) => `https://image.tmdb.org/t/p/w500/${imgPath}`,
+    apiKey: process.env.REACT_APP_API_KEY,
+    originalImage: (imgPath) => process.env.REACT_APP_ORIGINAL_IMAGE + imgPath,
+    w500Image: (imgPath) => process.env.REACT_APP_W500_IMAGE + imgPath,
 };
 
 export default apiConfig;

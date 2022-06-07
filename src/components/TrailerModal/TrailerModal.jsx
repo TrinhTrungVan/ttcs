@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./trailer-modal.scss";
+import "./TrailerModal.scss";
 
 const TrailerModal = (props) => {
     let content;

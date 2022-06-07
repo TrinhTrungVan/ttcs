@@ -1,13 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import "./movie-card.scss";
-
-import Button from "../button/Button";
+import Button from "../Button/Button";
 
 import { category } from "../../api/tmdbApi";
 import apiConfig from "../../api/apiConfig";
-import black_bg from "../../assets/black-bg.jpg";
+
+import "./MovieCard.scss";
 
 const MovieCard = (props) => {
     const item = props.item;

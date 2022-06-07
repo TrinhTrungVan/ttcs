@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
-import "./movie-grid.scss";
-
-import MovieCard from "../movie-card/MovieCard";
-import Button, { OutlineButton } from "../button/Button";
-import Input from "../search-input/SearchInput";
+import MovieCard from "../MovieCard/MovieCard";
+import Button, { OutlineButton } from "../Button/Button";
+import Input from "../SearchInput/SearchInput";
 
 import tmdbApi, { category, movieType, tvType } from "../../api/tmdbApi";
 import apiConfig from "../../api/apiConfig";
+
+import "./MovieGrid.scss";
 
 const MovieGrid = (props) => {
     const [items, setItems] = useState([]);

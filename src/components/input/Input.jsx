@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import "./input.scss";
+import "./Input.scss";
 
 // const inputReducer = (state, action) => {
 //     switch (action.type){
@@ -26,7 +26,7 @@ const Input = (props) => {
     };
 
     useEffect(() => {
-        if (enteredValue.trim() == "") {
+        if (enteredValue.trim() === "") {
             setIsValid(false);
         } else {
             setIsValid(true);

@@ -2,11 +2,11 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 
 import logo from "../../assets/logo.png";
-import AuthModal from "../auth-modal/AuthModal";
-import Modal from "../modal/Modal";
-import Button from "../button/Button";
+import AuthModal from "../AuthModal/AuthModal";
+import Modal from "../Modal/Modal";
+import Button from "../Button/Button";
 
-import "./header.scss";
+import "./Header.scss";
 
 const Header = () => {
     const [showModal, setShowModal] = useState(false);

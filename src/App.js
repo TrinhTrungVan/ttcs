@@ -4,10 +4,10 @@ import "./App.scss";
 
 import { BrowserRouter } from "react-router-dom";
 
-import Header from "./components/header/Header";
-import Footer from "./components/footer/Footer";
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
 
-import Switch from "./config/Switch";
+import Switch from "./routes/Switch";
 
 function App() {
     return (
