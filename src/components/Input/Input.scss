@@ -1,0 +1,84 @@
+@use "../../scss/" as *;
+
+.form-group {
+    @include flex(flex-start, flex-start);
+    width: 100%;
+    flex-direction: column;
+    position: relative;
+    margin-bottom: 1.6rem;
+
+    input {
+        width: 100%;
+        padding: 0.7rem 1.6rem 0.7rem 0.5rem;
+        color: black;
+        font-weight: 500;
+        border-radius: 4px;
+        outline: 2px solid rgb(2, 137, 158);
+
+        &:focus ~ label,
+        &:not(:placeholder-shown) ~ label {
+            top: -12px;
+            color: rgb(2, 137, 158);
+            font-size: 0.9rem;
+        }
+    }
+    label {
+        position: absolute;
+        top: 10px;
+        left: 6px;
+        color: black;
+        pointer-events: none;
+        transition: top 0.3s ease;
+        font-size: 0.9rem;
+        padding: 0 2px;
+        background-color: white;
+    }
+    .text-error {
+        font-size: 0.8rem;
+        color: $main-color;
+    }
+
+    &.invalid {
+        input {
+            outline: 2px solid rgb(255, 47, 47);
+        }
+        input:focus ~ label,
+        input:not(:placeholder-shown) ~ label {
+            color: rgb(255, 47, 47);
+        }
+
+        .line {
+            background-color: rgb(255, 47, 47);
+        }
+
+        i {
+            position: absolute;
+            top: 12px;
+            right: 6px;
+            color: rgb(255, 47, 47);
+            pointer-events: none;
+        }
+    }
+}
+
+@include mobile {
+    .form-group {
+        input {
+            font-size: 1.4rem;
+            height: 36px;
+
+            &:focus ~ label,
+            &:not(:placeholder-shown) ~ label {
+                font-size: 1.4rem;
+            }
+        }
+        label,
+        .text-error {
+            font-size: 1.4rem;
+        }
+
+        label {
+            top: 8px;
+        }
+    }
+}

@@ -1,0 +1,145 @@
+@use "../../scss/" as *;
+
+.header {
+    height: $header-height;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2001;
+    transition: all 0.3s ease;
+
+    &.shrink {
+        height: $header-shrink-height;
+        background-color: black;
+    }
+
+    .header__wrap {
+        @include flex(center, space-between);
+        padding: 6px 40px;
+
+        .logo {
+            @include flex(center, center);
+            flex-direction: column;
+
+            img {
+                width: 60px;
+            }
+
+            a {
+                text-align: center;
+                font-size: 1rem;
+            }
+        }
+
+        .header__nav {
+            @include flex(center, space-between);
+            margin-left: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+
+            & > * ~ * {
+                margin-left: 2.5rem;
+            }
+
+            a {
+                position: relative;
+
+                &::after {
+                    content: "";
+                    position: absolute;
+                    left: 0;
+                    bottom: 0;
+                    height: 2px;
+                    width: 0;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background-color: $main-color;
+                    transition: width 0.3s ease;
+                }
+
+                &.active::after,
+                &:hover::after {
+                    width: 100%;
+                }
+            }
+
+            @include mobile {
+                position: fixed;
+                margin: 0;
+                bottom: 0;
+                left: 0;
+                height: 7rem;
+                width: 100%;
+                background-color: $body-bg;
+                padding: 0 4rem;
+                box-shadow: $box-shadow;
+                font-size: 1.6rem;
+            }
+        }
+
+        span {
+            display: flex;
+            flex: 1;
+        }
+
+        .search {
+            @include flex(center, center);
+            cursor: pointer;
+
+            i {
+                margin-right: 3rem;
+                padding: 5px;
+                color: $white;
+                font-size: 2.2rem;
+                line-height: 2.2rem;
+                text-align: center;
+                font-weight: 700;
+                background-color: transparent;
+                transition: color 0.3s ease;
+
+                &:hover {
+                    color: $main-color;
+                    text-shadow: 0 0 8px #eb0147;
+                }
+            }
+        }
+        @include mobile {
+            .logo {
+                @include flex(center, center);
+                flex-direction: row;
+                position: fixed;
+                top: 10px;
+                left: 0;
+                padding: 6px 40px;
+
+                img {
+                    width: 30px;
+                    margin-right: 8px;
+                }
+
+                a {
+                    text-align: center;
+                    font-size: 1.6rem;
+                }
+            }
+
+            .search,
+            .signin {
+                margin-top: 8px;
+            }
+
+            .search {
+                i {
+                    margin-right: 2rem;
+                }
+            }
+
+            .signin {
+                button {
+                    font-size: 1.5rem;
+                }
+            }
+        }
+    }
+}

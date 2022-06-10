@@ -1,0 +1,93 @@
+@use "../../scss/" as *;
+
+.footer {
+    position: relative;
+    padding: 6rem 2rem;
+    background-position: top;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    &__content {
+        @include flex(flex-start, center);
+        max-width: 1000px;
+
+        &__contact {
+            width: 25%;
+
+            .logo {
+                @include flex(center, center);
+                flex-direction: column;
+
+                img {
+                    width: 60px;
+                }
+
+                a {
+                    text-align: center;
+                    font-size: 1rem;
+                }
+            }
+
+            &__infor {
+                & > * ~ * {
+                    margin-top: 0.5rem;
+                }
+
+                margin: 1rem 0 0 2rem;
+
+                .phone,
+                .email,
+                .socials {
+                    @include flex(center, flex-start);
+
+                    i {
+                        font-size: 1.5rem;
+                        padding-right: 0.5rem;
+                    }
+                }
+
+                .socials {
+                    i {
+                        font-size: 2.2rem;
+                        padding-right: 1rem;
+                    }
+                }
+            }
+        }
+
+        &__menus {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+
+            & > * {
+                margin-left: 3rem;
+            }
+        }
+
+        &__menu {
+            @include flex(flex-start, flex-start);
+            flex-direction: column;
+
+            & > * ~ * {
+                margin-top: 0.5rem;
+            }
+
+            a {
+                font-size: 1.2rem;
+            }
+        }
+    }
+}
+
+@include mobile {
+    .footer {
+        padding: 2rem 2rem 16rem;
+        &__content__contact {
+            position: absolute;
+            top: 15rem;
+            width: 100%;
+            @include flex(flex-start, center);
+        }
+    }
+}
