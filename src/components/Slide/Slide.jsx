@@ -10,19 +10,21 @@ import tmdbApi, { category, movieType } from "../../api/tmdbApi";
 import Button, { OutlineButton } from "../Button/Button";
 import Modal from "../Modal/Modal";
 import TrailerModal from "../TrailerModal/TrailerModal";
+import Loading from "../Loading/Loading";
 
 import "./Slide.scss";
 
-const HeroSlide = () => {
+const Slide = () => {
     const [movieItems, setMovieItems] = useState([]);
     const [showTrailerModal, setShowTrailerModal] = useState(false);
     const [videoSrc, setVideoSrc] = useState("");
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
+        setLoading(true);
+
         const getMovies = async () => {
             const params = {
-                api_key: apiConfig.apiKey,
-                language: apiConfig.language,
                 page: 1,
             };
             try {
@@ -31,7 +33,9 @@ const HeroSlide = () => {
                     { params }
                 );
                 setMovieItems(response.results.slice(0, 10));
+                setLoading(false);
             } catch {
+                setLoading(false);
                 console.log("error");
             }
         };
@@ -45,38 +49,41 @@ const HeroSlide = () => {
     };
 
     return (
-        <div className='hero-slide'>
-            <Swiper
-                modules={[Autoplay]}
-                grabCursor={true}
-                spaceBetween={0}
-                slidesPerView={1}
-                autoplay={{ delay: 4000 }}
-                loop={true}
-                speed={700}
-            >
-                {movieItems.map((item, i) => (
-                    <SwiperSlide key={i}>
-                        {({ isActive }) => (
-                            <HeroSlideItem
-                                item={item}
-                                className={`${isActive ? "active" : ""}`}
-                                getTrailer={getTrailer}
-                            />
-                        )}
-                    </SwiperSlide>
-                ))}
-            </Swiper>
-            {showTrailerModal && (
-                <Modal setShowModal={setShowTrailerModal}>
-                    <TrailerModal videoSrc={videoSrc} />
-                </Modal>
-            )}
-        </div>
+        <>
+            {loading && <Loading />}
+            <div className='slide'>
+                <Swiper
+                    modules={[Autoplay]}
+                    grabCursor={true}
+                    spaceBetween={0}
+                    slidesPerView={1}
+                    autoplay={{ delay: 4000 }}
+                    loop={true}
+                    speed={700}
+                >
+                    {movieItems.map((item, i) => (
+                        <SwiperSlide key={i}>
+                            {({ isActive }) => (
+                                <SlideItem
+                                    item={item}
+                                    className={`${isActive ? "active" : ""}`}
+                                    getTrailer={getTrailer}
+                                />
+                            )}
+                        </SwiperSlide>
+                    ))}
+                </Swiper>
+                {showTrailerModal && (
+                    <Modal setShowModal={setShowTrailerModal}>
+                        <TrailerModal videoSrc={videoSrc} />
+                    </Modal>
+                )}
+            </div>
+        </>
     );
 };
 
-const HeroSlideItem = (props) => {
+const SlideItem = (props) => {
     let navigate = useNavigate();
     const item = props.item;
     let maxLength;
@@ -94,10 +101,7 @@ const HeroSlideItem = (props) => {
 
     useEffect(() => {
         const getTrailerSrc = async () => {
-            const params = {
-                api_key: apiConfig.apiKey,
-                language: apiConfig.language,
-            };
+            const params = {};
             const videos = await tmdbApi.getVideos(category.movie, item.id, {
                 params,
             });
@@ -120,11 +124,11 @@ const HeroSlideItem = (props) => {
     return (
         <>
             <div
-                className={`hero-slide__item ${props.className}`}
+                className={`slide__item ${props.className}`}
                 style={{ backgroundImage: `url(${background})` }}
             >
-                <div className='hero-slide__item__content'>
-                    <div className='hero-slide__item__content__poster'>
+                <div className='slide__item__content'>
+                    <div className='slide__item__content__poster'>
                         <img
                             src={
                                 item.poster_path
@@ -134,7 +138,7 @@ const HeroSlideItem = (props) => {
                             alt=''
                         />
                     </div>
-                    <div className='hero-slide__item__content__info'>
+                    <div className='slide__item__content__info'>
                         <h3 className='title'>{item.title}</h3>
                         <p className='overview'>
                             {item.overview.length > maxLength
@@ -158,4 +162,4 @@ const HeroSlideItem = (props) => {
     );
 };
 
-export default HeroSlide;
+export default Slide;

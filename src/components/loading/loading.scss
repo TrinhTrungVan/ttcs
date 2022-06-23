@@ -2,16 +2,11 @@
 
 .loading-background {
     position: relative;
-    width: 100%;
-    height: 100vh;
-    background-color: black;
     @include flex(center, center);
 
     .loading {
-        i {
-            font-size: 80px;
-        }
-        animation: spinner 1.5s linear infinite;
+        width: 150px;
+        animation: spinner 1s linear infinite;
     }
 }
 

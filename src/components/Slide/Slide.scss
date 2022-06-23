@@ -1,6 +1,6 @@
 @use "../../scss/" as *;
 
-.hero-slide__item {
+.slide__item {
     width: 100%;
     height: 100vh;
     position: relative;
@@ -103,7 +103,7 @@
 
 // Mobile
 @include mobile {
-    .hero-slide__item {
+    .slide__item {
         height: 40vh;
 
         &__content__poster {

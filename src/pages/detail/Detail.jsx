@@ -7,6 +7,7 @@ import apiConfig from "../../api/apiConfig";
 import CastList from "./CastList";
 import VideoList from "./VideoList";
 import MovieList from "../../components/MovieList/MovieList";
+import Loading from "../../components/Loading/Loading";
 
 import "./Detail.scss";
 
@@ -14,15 +15,16 @@ const Detail = () => {
     const { category, id } = useParams();
 
     const [item, setItem] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
+        setLoading(true);
+
         const getDetail = async () => {
-            const params = {
-                api_key: apiConfig.apiKey,
-                language: apiConfig.language,
-            };
+            const params = {};
             const response = await tmdbApi.detail(category, id, { params });
             setItem(response);
+            setLoading(false);
             window.scrollTo(0, 0);
         };
         getDetail();
@@ -30,6 +32,7 @@ const Detail = () => {
 
     return (
         <>
+            {loading && <Loading />}
             {item && (
                 <>
                     <div

@@ -4,9 +4,9 @@ import { useParams, useNavigate } from "react-router-dom";
 import MovieCard from "../MovieCard/MovieCard";
 import Button, { OutlineButton } from "../Button/Button";
 import Input from "../SearchInput/SearchInput";
+import Loading from "../Loading/Loading";
 
 import tmdbApi, { category, movieType, tvType } from "../../api/tmdbApi";
-import apiConfig from "../../api/apiConfig";
 
 import "./MovieGrid.scss";
 
@@ -14,17 +14,18 @@ const MovieGrid = (props) => {
     const [items, setItems] = useState([]);
     const [page, setPage] = useState(1);
     const [totalPage, setTotalPage] = useState(0);
+    const [loading, setLoading] = useState(false);
 
     const { keyword } = useParams();
 
     useEffect(() => {
+        setLoading(true);
+
         const getList = async () => {
             let response = null;
 
             if (keyword === undefined) {
-                const params = {
-                    api_key: apiConfig.apiKey,
-                };
+                const params = {};
                 switch (props.category) {
                     case category.movie:
                         response = await tmdbApi.getMoviesList(
@@ -39,7 +40,6 @@ const MovieGrid = (props) => {
                 }
             } else {
                 const params = {
-                    api_key: apiConfig.apiKey,
                     query: keyword,
                 };
 
@@ -48,6 +48,7 @@ const MovieGrid = (props) => {
 
             setItems(response.results);
             setTotalPage(response.total_pages);
+            setLoading(false);
         };
         getList();
     }, [props.category, keyword]);
@@ -57,7 +58,6 @@ const MovieGrid = (props) => {
 
         if (keyword === undefined) {
             const params = {
-                api_key: apiConfig.apiKey,
                 page: page + 1,
             };
             switch (props.category) {
@@ -73,7 +73,6 @@ const MovieGrid = (props) => {
             }
         } else {
             const params = {
-                api_key: apiConfig.apiKey,
                 page: page + 1,
                 query: keyword,
             };
@@ -90,6 +89,7 @@ const MovieGrid = (props) => {
             <div className='section mb-3'>
                 <MovieSearch category={props.category} keyword={keyword} />
             </div>
+            {loading && <Loading />}
             {items.length === 0 ? (
                 <h2 className='no-result'>No result.</h2>
             ) : (

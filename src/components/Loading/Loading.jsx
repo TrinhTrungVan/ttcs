@@ -2,12 +2,12 @@ import React from "react";
 
 import "./Loading.scss";
 
+import loading_icon from "../../assets/loading.png";
+
 const Loading = () => {
     return (
         <div className='loading-background'>
-            <div className='loading'>
-                <i className='bx bx-loader'></i>
-            </div>
+            <img className='loading' src={loading_icon} />
         </div>
     );
 };

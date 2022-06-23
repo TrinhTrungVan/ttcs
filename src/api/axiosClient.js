@@ -1,9 +1,16 @@
+import qs from "qs";
 import axios from "axios";
 
 import apiConfig from "./apiConfig";
 
 const axiosClient = axios.create({
     baseURL: apiConfig.baseUrl,
+    paramsSerializer: (params) =>
+        qs.stringify({
+            ...params,
+            api_key: apiConfig.apiKey,
+            language: "en-US",
+        }),
 });
 
 axiosClient.interceptors.request.use(async (config) => config);

@@ -3,21 +3,21 @@ import React, { useState, useEffect } from "react";
 import { SwiperSlide, Swiper } from "swiper/react";
 
 import MovieCard from "../MovieCard/MovieCard";
+import Loading from "../Loading/Loading";
 
 import tmdbApi, { category } from "../../api/tmdbApi";
-import apiConfig from "../../api/apiConfig";
 
 import "./MovieList.scss";
 
 const MovieList = (props) => {
     const [items, setItems] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
+        setLoading(true);
         const getList = async () => {
             let response = null;
-            const params = {
-                api_key: apiConfig.apiKey,
-            };
+            const params = {};
 
             if (props.type !== "similar") {
                 switch (props.category) {
@@ -37,25 +37,29 @@ const MovieList = (props) => {
                 });
             }
             setItems(response.results);
+            setLoading(false);
         };
         getList();
     }, []);
 
     return (
-        <div className='movie-list'>
-            <Swiper
-                grabCursor={true}
-                spaceBetween={15}
-                slidesPerView={"auto"}
-                speed={800}
-            >
-                {items.map((item, i) => (
-                    <SwiperSlide key={i} className='swiper-slide'>
-                        <MovieCard item={item} category={props.category} />
-                    </SwiperSlide>
-                ))}
-            </Swiper>
-        </div>
+        <>
+            {loading && <Loading />}
+            <div className='movie-list'>
+                <Swiper
+                    grabCursor={true}
+                    spaceBetween={15}
+                    slidesPerView={"auto"}
+                    speed={800}
+                >
+                    {items.map((item, i) => (
+                        <SwiperSlide key={i} className='swiper-slide'>
+                            <MovieCard item={item} category={props.category} />
+                        </SwiperSlide>
+                    ))}
+                </Swiper>
+            </div>
+        </>
     );
 };
 
